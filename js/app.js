@@ -41,7 +41,7 @@ function displayChapter() {
 }
 
 function displayWord(play = true) {
-    if (index >= chapter.length) {
+    if ((play && isPaused) || index >= chapter.length) {
         return;
     }
     let word = chapter[index].split("");
@@ -54,7 +54,7 @@ function displayWord(play = true) {
     document.getElementById("word").innerHTML = word;
     index += 1;
     document.getElementById("progress").value = Math.round(index * 100 / chapter.length);
-    if (play && !isPaused) {
+    if (play) {
         let timeout = (1/wpm) * 60 * 1000;
         timeout = [".", ",", ";"].includes(word.at(-1)) ? timeout * 2 : timeout;
         setTimeout(displayWord, timeout);

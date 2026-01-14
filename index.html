@@ -9,17 +9,18 @@
             a { text-decoration: none; }
             body { font-family: Courier New, sans-serif; }
             .bg-black { background-color: black; }
+            .d-flex { display: flex; }
             .d-none{ display: none; }
             .m-0 { margin: 0; }
             .pointer { cursor: pointer; }
             .text-blue { color: #1da1f2; }
-            .text-center { display: flex; align-items: center; justify-content: center; }
             .text-red { color: red; }
             .text-white { color: white; }
+            .text-center { justify-content: center; }
+            .text-middle { align-items: center; }
             .vh-5 { height: 5vh; }
-            .vh-10 { height: 10vh; }
-            .vh-25 { height: 25vh; }
-            .vh-60 { height: 60vh; }
+            .vh-15 { height: 15vh; }
+            .vh-75 { height: 75vh; }
             .vh-100 { height: 100vh; }
             .w-100 { width: 100%; }
         </style>
@@ -31,16 +32,16 @@
         </page>
         <page id="content" class="d-none">
             <div class="content-wrapper" class="vh-100 w-100">
-                <section id="content-header" class="vh-10 w-100">
+                <section id="content-header" class="vh-5 w-100">
                     <p class="text-blue pointer" onclick="displayPage('upload')">Back</p>
                 </section>
-                <section id="content-body" class="vh-60 w-100 text-center">
+                <section id="content-body" class="d-flex vh-75 w-100 text-center text-middle">
                     <p id="word" style="font-size: 40px;"></p>
                 </section>
                 <section id="content-progres" class="vh-5 w-100">
                     <progress id="progress" value="0" max="100" class="w-100"></progress>
                 </section>
-                <section id="content-footer" class="vh-25 w-100 text-center">
+                <section id="content-footer" class="d-flex vh-15 w-100 text-center">
                     <h1 class="m-0">
                         <span onclick="smaller()" class="pointer">🔽</span>
                         <span id="font-size">40</span>
