@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>SpeedReader</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
         <style>
@@ -15,41 +16,46 @@
             .text-center { display: flex; align-items: center; justify-content: center; }
             .text-red { color: red; }
             .text-white { color: white; }
+            .text-size-1-5 { font-size: 1.5rem; }
+            .text-size-2 { font-size: 2rem; }
             .vh-5 { height: 5vh; }
             .vh-10 { height: 10vh; }
             .vh-15 { height: 15vh; }
             .vh-70 { height: 70vh; }
+            .vh-100 { height: 100vh; }
             .w-100 { width: 100%; }
         </style>
     </head>
     <body class="bg-black text-white">
         <page id="upload">
-            <input id="file-upload" type="file">
+            <input id="file-upload" type="file" class="text-size-2">
             <div id="chapters"></div>
         </page>
         <page id="content" class="d-none">
-            <section id="content-header" class="vh-10 w-100">
-                <p class="text-blue pointer" onclick="displayPage('upload')">Back</p>
-            </section>
-            <section id="content-body" class="vh-70 w-100 text-center">
-                <p id="word" style="font-size: 40px;"></p>
-            </section>
-            <section id="content-progres" class="vh-5 w-100">
-                <progress id="progress" value="0" max="100" class="w-100"></progress>
-            </section>
-            <section id="content-footer" class="vh-15 w-100 text-center">
-                <h1 class="m-0">
-                    <span onclick="smaller()" class="pointer">🔽</span>
-                    <span id="font-size">40</span>
-                    <span onclick="larger()" class="pointer">🔼</span>
-                    <span onclick="prevWord()" class="pointer">⏪</span>
-                    <span onclick="play()" class="pointer">⏯️</span>
-                    <span onclick="nextWord()" class="pointer">⏩</span>
-                    <span onclick="slower()" class="pointer">⏬</span>
-                    <span id="wpm">250</span>
-                    <span onclick="faster()" class="pointer">⏫</span>
-                </h1>
-            </section>
+            <div class="content-wrapper" class="vh-100 w-100">
+                <section id="content-header" class="vh-10 w-100">
+                    <p class="text-size-1-5 text-blue pointer" onclick="displayPage('upload')">Back</p>
+                </section>
+                <section id="content-body" class="vh-70 w-100 text-center">
+                    <p id="word" style="font-size: 40px;"></p>
+                </section>
+                <section id="content-progres" class="vh-5 w-100">
+                    <progress id="progress" value="0" max="100" class="w-100"></progress>
+                </section>
+                <section id="content-footer" class="vh-15 w-100 text-center">
+                    <h1 class="m-0">
+                        <span onclick="smaller()" class="pointer">🔽</span>
+                        <span id="font-size">40</span>
+                        <span onclick="larger()" class="pointer">🔼</span>
+                        <span onclick="prevWord()" class="pointer">⏪</span>
+                        <span onclick="play()" class="pointer">⏯️</span>
+                        <span onclick="nextWord()" class="pointer">⏩</span>
+                        <span onclick="slower()" class="pointer">⏬</span>
+                        <span id="wpm">250</span>
+                        <span onclick="faster()" class="pointer">⏫</span>
+                    </h1>
+                </section>
+            </div>
         </page>
         <script src="js/jszip.3.1.5.min.js"></script>
         <script src="js/epub.0.3.93.min.js"></script>
