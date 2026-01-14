@@ -2,7 +2,6 @@ let book;
 let chapter = [];
 let index = 0;
 let isPaused = true;
-let interval;
 let wpm = 250;
 let fontSize = 40;
 
@@ -41,58 +40,49 @@ function displayChapter() {
     displayWord();
 }
 
-function displayWord() {
+function displayWord(play = true) {
     if (index >= chapter.length) {
-        pause();
         return;
     }
-    const word = chapter[index].split("");
+    let word = chapter[index].split("");
     if (word.length % 2 === 0) {
         word.unshift("&nbsp;");
     }
     const middleIndex = Math.floor(word.length / 2);
     word[middleIndex] = `<span class="text-red">${word[middleIndex]}</span>`;
-    document.getElementById("word").innerHTML = word.join("");
+    word = word.join("");
+    document.getElementById("word").innerHTML = word;
     index += 1;
     document.getElementById("progress").value = Math.round(index * 100 / chapter.length);
-}
-
-function setTick() {
-    clearInterval(interval);
-    interval = setInterval(displayWord, (1 / wpm) * 60 * 1000);
-    isPaused = false;
+    if (play && !isPaused) {
+        let timeout = (1/wpm) * 60 * 1000;
+        timeout = [".", ",", ";"].includes(word.at(-1)) ? timeout * 2 : timeout;
+        setTimeout(displayWord, timeout);
+    }
 }
 
 function play() {
-    isPaused ? setTick() : pause();
-}
-
-function pause() {
-    clearInterval(interval);
-    isPaused = true;
+    isPaused = !isPaused;
+    displayWord();
 }
 
 function nextWord() {
-    pause();
-    displayWord();
+    displayWord(false);
 }
 
 function prevWord() {
-    pause();
     index = Math.max(0, index - 2);
-    displayWord();
+    displayWord(false);
 }
 
 function faster() {
     wpm = Math.min(1000, wpm + 25);
     document.getElementById("wpm").innerHTML = wpm;
-    setTick();
 }
 
 function slower() {
     wpm = Math.max(0, wpm - 25);
     document.getElementById("wpm").innerHTML = wpm;
-    setTick();
 }
 
 function smaller() {
