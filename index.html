@@ -16,33 +16,31 @@
             .text-center { display: flex; align-items: center; justify-content: center; }
             .text-red { color: red; }
             .text-white { color: white; }
-            .text-size-1-5 { font-size: 1.5rem; }
-            .text-size-2 { font-size: 2rem; }
             .vh-5 { height: 5vh; }
             .vh-10 { height: 10vh; }
-            .vh-15 { height: 15vh; }
-            .vh-70 { height: 70vh; }
+            .vh-25 { height: 25vh; }
+            .vh-60 { height: 60vh; }
             .vh-100 { height: 100vh; }
             .w-100 { width: 100%; }
         </style>
     </head>
     <body class="bg-black text-white">
         <page id="upload">
-            <input id="file-upload" type="file" class="text-size-2">
+            <input id="file-upload" type="file">
             <div id="chapters"></div>
         </page>
         <page id="content" class="d-none">
             <div class="content-wrapper" class="vh-100 w-100">
                 <section id="content-header" class="vh-10 w-100">
-                    <p class="text-size-1-5 text-blue pointer" onclick="displayPage('upload')">Back</p>
+                    <p class="text-blue pointer" onclick="displayPage('upload')">Back</p>
                 </section>
-                <section id="content-body" class="vh-70 w-100 text-center">
+                <section id="content-body" class="vh-60 w-100 text-center">
                     <p id="word" style="font-size: 40px;"></p>
                 </section>
                 <section id="content-progres" class="vh-5 w-100">
                     <progress id="progress" value="0" max="100" class="w-100"></progress>
                 </section>
-                <section id="content-footer" class="vh-15 w-100 text-center">
+                <section id="content-footer" class="vh-25 w-100 text-center">
                     <h1 class="m-0">
                         <span onclick="smaller()" class="pointer">🔽</span>
                         <span id="font-size">40</span>
