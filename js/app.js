@@ -31,13 +31,14 @@ async function loadChapter(href) {
         nextSibling = nextSibling.nextSibling;
     }
     chapter = text.replace(/[\s\-\—]+/g, " ").trim().split(" ");
-    index = 0;
     displayChapter();
 }
 
 function displayChapter() {
     displayPage("content");
-    displayWord();
+    index = 0;
+    isPaused = true;
+    displayWord(false);
 }
 
 function displayWord(play = true) {
