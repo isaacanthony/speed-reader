@@ -4,7 +4,7 @@ let chapter = [];
 let index = 0;
 let isPaused = true;
 let wpm = 250;
-let fontSize = 40;
+let fontSize = 35;
 
 function displayPage(page) {
     window.scrollTo({ top: 0, left: 0 });
@@ -45,7 +45,7 @@ async function loadChapter(href) {
         text += nextSibling.innerText ?? "";
         nextSibling = nextSibling.nextSibling;
     }
-    chapter = text.replace(/[\s\-\—]+/g, " ").trim().split(" ");
+    chapter = text.replace("...", "... ").replace(/[\s\-\—]+/g, " ").trim().split(" ");
     displayChapter();
 }
 
@@ -71,9 +71,9 @@ function displayWord(play = true) {
     index += 1;
     document.getElementById("progress").value = Math.round(index * 100 / chapter.length);
     if (play) {
-        let timeout = (1/wpm) * 60 * 1000;
-        timeout = [".", ",", ";"].includes(word.at(-1)) ? timeout * 2 : timeout;
-        setTimeout(displayWord, timeout);
+        let timeout = (1 / wpm) * 60 * 1000;
+        timeout = /[^A-Za-z0-9]/.test(word.at(-1)) ? timeout * 3 : timeout;
+        setTimeout(displayWord, Math.round(timeout));
     }
 }
 
