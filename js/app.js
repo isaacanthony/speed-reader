@@ -21,10 +21,16 @@ function displayPage(page) {
 }
 
 async function loadChapter(href) {
-    const section = await book.spine.get(href);
-    const content = await section.load(book.load.bind(book));
-    section.unload();
-    const start = content.ownerDocument.getElementById(href.split("#")[1]);
+    let start;
+    try {
+        const section = await book.spine.get(href);
+        const content = await section.load(book.load.bind(book));
+        section.unload();
+        start = content.ownerDocument.getElementById(href.split("#")[1]);
+    } catch (err) {
+        document.getElementById("error").innerHTML = JSON.stringify(err, Object.getOwnPropertyNames(err), 2);
+        return;
+    }
     let text = start.innerText;
     let nextSibling = start.nextSibling;
     while (nextSibling && nextSibling.nodeName !== start.nodeName) {
@@ -115,6 +121,7 @@ document.getElementById("file-upload").addEventListener("change", async (event) 
     book = ePub(file);
     await book.ready;
 
+    chapters = [];
     const navigation = await book.loaded.navigation;
     navigation.toc.forEach((chapter) => addChapter(chapter, 0));
     document.getElementById("chapters").innerHTML = chapters.join("");
