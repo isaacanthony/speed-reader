@@ -4,7 +4,7 @@ let chapter = [];
 let index = 0;
 let isPaused = true;
 let wpm = 250;
-let fontSize = 35;
+let fontSize = 40;
 
 function displayPage(page) {
     window.scrollTo({ top: 0, left: 0 });
@@ -45,7 +45,12 @@ async function loadChapter(href) {
         text += nextSibling.innerText ?? "";
         nextSibling = nextSibling.nextSibling;
     }
-    chapter = text.replace("...", "... ").replace(/[\s\-\—]+/g, " ").trim().split(" ");
+    chapter = text
+        .replace("...", "... ")
+        .replace("…", "… ")
+        .replace(/[\s\-\—]+/g, " ")
+        .trim()
+        .split(" ");
     displayChapter();
 }
 
@@ -78,8 +83,22 @@ function displayWord(play = true) {
 }
 
 function play() {
-    isPaused = !isPaused;
+    isPaused ? resume() : pause();
     displayWord();
+}
+
+function resume() {
+    isPaused = false;
+    document.getElementById("header-link").className = "d-none";
+    document.getElementById("progress").className = "w-100 d-none";
+    document.getElementById("footer-buttons").className = "m-0 d-none";
+}
+
+function pause() {
+    isPaused = true;
+    document.getElementById("header-link").className = "";
+    document.getElementById("progress").className = "w-100";
+    document.getElementById("footer-buttons").className = "m-0";
 }
 
 function nextWord() {
@@ -113,15 +132,15 @@ function larger() {
     document.getElementById("font-size").innerHTML = fontSize;
 }
 
-function addChapter(chapter, index) {
+function addChapter(chapter) {
     chapters.push(`
         <a href="#${chapter.href}">
             <p onclick="loadChapter('${chapter.href}')">
-                ${"&nbsp;".repeat(index * 2)}${chapter.label.trim()}
+                ${chapter.label.trim()}
             </p>
         </a>
     `);
-    chapter.subitems.forEach(item => addChapter(item, index + 1));
+    chapter.subitems.forEach(item => addChapter(item));
 }
 
 document.getElementById("file-upload").addEventListener("change", async (event) => {
@@ -133,6 +152,6 @@ document.getElementById("file-upload").addEventListener("change", async (event) 
 
     chapters = [];
     const navigation = await book.loaded.navigation;
-    navigation.toc.forEach((chapter) => addChapter(chapter, 0));
+    navigation.toc.forEach((chapter) => addChapter(chapter));
     document.getElementById("chapters").innerHTML = chapters.join("");
 });

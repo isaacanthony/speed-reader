@@ -20,6 +20,7 @@
             .text-middle { align-items: center; }
             .text-lg { font-size: 1.5rem; }
             .vh-5 { height: 5vh; }
+            .vh-10 { height: 10vh; }
             .vh-15 { height: 15vh; }
             .vh-75 { height: 75vh; }
             .vh-100 { height: 100vh; }
@@ -28,14 +29,19 @@
     </head>
     <body class="bg-black text-white">
         <page id="upload">
-            <input id="file-upload" type="file" class="text-lg">
+            <button
+                id="btn-upload"
+                class="w-100 pointer text-lg"
+                onclick="document.getElementById('file-upload').click()"
+            >Upload</button>
+            <input id="file-upload" type="file" class="d-none">
             <div id="chapters"></div>
             <p id="error" class="text-red"></p>
         </page>
         <page id="content" class="d-none">
             <div class="content-wrapper" class="vh-100 w-100">
-                <section id="content-header" class="vh-5 w-100">
-                    <a href="#">
+                <section id="content-header" class="vh-10 w-100">
+                    <a id="header-link" href="#">
                         <p class="text-lg m-0" onclick="displayPage('upload')">Back</p>
                     </a>
                 </section>
@@ -44,15 +50,15 @@
                     class="d-flex vh-75 w-100 text-center text-middle pointer"
                     onclick="play()"
                 >
-                    <p id="word" style="font-size: 35px;"></p>
+                    <p id="word" style="font-size: 40px;"></p>
                 </section>
                 <section id="content-progres" class="vh-5 w-100">
                     <progress id="progress" value="0" max="100" class="w-100"></progress>
                 </section>
-                <section id="content-footer" class="d-flex vh-15 w-100 text-center">
-                    <h1 class="m-0">
+                <section id="content-footer" class="d-flex vh-10 w-100 text-center">
+                    <h1 id="footer-buttons" class="m-0">
                         <span onclick="smaller()" class="pointer">🔽</span>
-                        <span id="font-size">35</span>
+                        <span id="font-size">40</span>
                         <span onclick="larger()" class="pointer">🔼</span>
                         <span onclick="prevWord()" class="pointer">⏪</span>
                         <span onclick="play()" class="pointer">⏯️</span>
