@@ -111,7 +111,7 @@ function larger() {
 
 function addChapter(chapter, index) {
     chapters.push(`
-        <p onclick="loadChapter('${chapter.href.replace("xhtml/", "")}')" class="pointer text-blue">
+        <p onclick="loadChapter('${chapter.href}')" class="pointer text-blue">
             ${"&nbsp;".repeat(index * 2)}${chapter.label.trim()}
         </p>
     `);
