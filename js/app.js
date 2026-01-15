@@ -31,6 +31,10 @@ async function loadChapter(href) {
         document.getElementById("error").innerHTML = JSON.stringify(err, Object.getOwnPropertyNames(err), 2);
         return;
     }
+    if (!start) {
+        document.getElementById("error").innerHTML = `Chapter not found: ${href}.`;
+        return;
+    }
     let text = start.innerText;
     let nextSibling = start.nextSibling;
     while (nextSibling && nextSibling.nodeName !== start.nodeName) {
@@ -107,8 +111,8 @@ function larger() {
 
 function addChapter(chapter, index) {
     chapters.push(`
-        <p onclick="loadChapter('${chapter.href}')" class="pointer text-blue">
-            ${"&nbsp;".repeat(index * 2)}${chapter.label.trim()}: ${chapter.href}
+        <p onclick="loadChapter('${chapter.href.replace("xhtml/", "")}')" class="pointer text-blue">
+            ${"&nbsp;".repeat(index * 2)}${chapter.label.trim()}
         </p>
     `);
     chapter.subitems.forEach(item => addChapter(item, index + 1));
