@@ -13,7 +13,6 @@
             .d-none{ display: none; }
             .m-0 { margin: 0; }
             .pointer { cursor: pointer; }
-            .text-blue { color: #1da1f2; }
             .text-red { color: red; }
             .text-white { color: white; }
             .text-center { justify-content: center; }
@@ -35,7 +34,9 @@
         <page id="content" class="d-none">
             <div class="content-wrapper" class="vh-100 w-100">
                 <section id="content-header" class="vh-5 w-100">
-                    <p class="text-lg text-blue pointer m-0" onclick="displayPage('upload')">Back</p>
+                    <a href="#">
+                        <p class="text-lg m-0" onclick="displayPage('upload')">Back</p>
+                    </a>
                 </section>
                 <section
                     id="content-body"
