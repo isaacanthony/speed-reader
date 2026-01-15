@@ -1,4 +1,5 @@
 let book;
+let chapters = [];
 let chapter = [];
 let index = 0;
 let isPaused = true;
@@ -98,6 +99,15 @@ function larger() {
     document.getElementById("font-size").innerHTML = fontSize;
 }
 
+function addChapter(chapter, index) {
+    chapters.push(`
+        <p onclick="loadChapter('${chapter.href}')" class="pointer text-blue">
+            ${"&nbsp;".repeat(index * 2)}${chapter.label.trim()}
+        </p>
+    `);
+    chapter.subitems.forEach(item => addChapter(item, index + 1));
+}
+
 document.getElementById("file-upload").addEventListener("change", async (event) => {
     const file = event.target.files[0];
     if (!file) return;
@@ -106,12 +116,6 @@ document.getElementById("file-upload").addEventListener("change", async (event) 
     await book.ready;
 
     const navigation = await book.loaded.navigation;
-    const chapters = navigation.toc.map((chapter) => {
-        return `
-            <p onclick="loadChapter('${chapter.href}')" class="pointer text-blue">
-                ${chapter.label.trim()}
-            </p>
-        `;
-    });
+    navigation.toc.forEach((chapter) => addChapter(chapter, 0));
     document.getElementById("chapters").innerHTML = chapters.join("");
 });
