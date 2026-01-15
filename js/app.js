@@ -26,7 +26,11 @@ async function loadChapter(href) {
         const section = await book.spine.get(href);
         const content = await section.load(book.load.bind(book));
         section.unload();
-        start = content.ownerDocument.getElementById(href.split("#")[1]);
+        if (href.includes("#")) {
+            start = content.ownerDocument.getElementById(href.split("#")[1]);
+        } else {
+            start = content;
+        }
     } catch (err) {
         document.getElementById("error").innerHTML = JSON.stringify(err, Object.getOwnPropertyNames(err), 2);
         return;
