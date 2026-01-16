@@ -75,7 +75,6 @@ function displayWord(play = true) {
     word = word.join("");
     document.getElementById("word").innerHTML = word;
     index += 1;
-    document.getElementById("progress").value = Math.round(index * 100 / chapter.length);
     if (play) {
         let timeout = (1 / wpm) * 60 * 1000;
         timeout = /[^A-Za-z0-9]/.test(word.at(-1)) ? timeout * 3 : timeout;
@@ -97,6 +96,7 @@ function resume() {
 
 function pause() {
     isPaused = true;
+    document.getElementById("progress").value = Math.round(index * 100 / chapter.length);
     document.getElementById("header-buttons").className = "d-flex";
     document.getElementById("progress").className = "w-100";
     document.getElementById("footer-buttons").className = "m-0";
@@ -112,7 +112,7 @@ function prevWord() {
 }
 
 function faster() {
-    wpm = Math.min(500, wpm + 25);
+    wpm = Math.min(1000, wpm + 25);
     document.getElementById("wpm").innerHTML = wpm;
 }
 
