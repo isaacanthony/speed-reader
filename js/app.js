@@ -5,6 +5,7 @@ let index = 0;
 let isPaused = true;
 let wpm = 250;
 let fontSize = 40;
+let isFullScreen = false;
 
 function displayPage(page) {
     window.scrollTo({ top: 0, left: 0 });
@@ -89,14 +90,14 @@ function play() {
 
 function resume() {
     isPaused = false;
-    document.getElementById("header-link").className = "d-none";
+    document.getElementById("header-buttons").className = "d-none";
     document.getElementById("progress").className = "w-100 d-none";
     document.getElementById("footer-buttons").className = "m-0 d-none";
 }
 
 function pause() {
     isPaused = true;
-    document.getElementById("header-link").className = "";
+    document.getElementById("header-buttons").className = "d-flex";
     document.getElementById("progress").className = "w-100";
     document.getElementById("footer-buttons").className = "m-0";
 }
@@ -111,7 +112,7 @@ function prevWord() {
 }
 
 function faster() {
-    wpm = Math.min(1000, wpm + 25);
+    wpm = Math.min(500, wpm + 25);
     document.getElementById("wpm").innerHTML = wpm;
 }
 
@@ -130,6 +131,16 @@ function larger() {
     fontSize = Math.min(200, fontSize + 5);
     document.getElementById("word").style.fontSize = fontSize + "px";
     document.getElementById("font-size").innerHTML = fontSize;
+}
+
+function fullScreen() {
+    if (isFullScreen) {
+        document.exitFullscreen();
+        isFullScreen = false;
+    } else {
+        document.documentElement.requestFullscreen();
+        isFullScreen = true;
+    }
 }
 
 function addChapter(chapter) {
