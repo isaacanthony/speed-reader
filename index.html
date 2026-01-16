@@ -8,7 +8,7 @@
         <link rel="manifest" href="manifest.json">
         <style>
             a { color: white; text-decoration: none; }
-            a:visited { color: grey; }
+            a:visited { color: red; }
             body { font-family: Courier New, sans-serif; }
             .bg-black { background-color: black; }
             .d-flex { display: flex; }
@@ -36,7 +36,7 @@
                 class="w-100 pointer"
                 onclick="document.getElementById('file-upload').click()"
             >
-                <h1 class="m-0">📖</h1>
+                <h1 class="m-0">📕</h1>
             </button>
             <input id="file-upload" type="file" class="d-none">
             <div id="chapters"></div>
@@ -71,7 +71,15 @@
                     <p id="word" style="font-size: 40px;"></p>
                 </section>
                 <section id="content-progres" class="vh-5 w-100">
-                    <progress id="progress" value="0" max="100" class="w-100"></progress>
+                    <input
+                        id="progress-bar"
+                        type="range"
+                        value="0"
+                        min="0"
+                        max="100"
+                        class="w-100 pointer"
+                        onclick="seek()"
+                    >
                 </section>
                 <section id="content-footer" class="d-flex vh-10 w-100 text-center">
                     <h1 id="footer-buttons" class="m-0">
@@ -79,6 +87,7 @@
                         <span id="font-size">40</span>
                         <span onclick="larger()" class="pointer">🔼</span>
                         <span onclick="prevWord()" class="pointer">⏪</span>
+                        <span id="progress-text">0%</span>
                         <span onclick="nextWord()" class="pointer">⏩</span>
                         <span onclick="slower()" class="pointer">⏬</span>
                         <span id="wpm">250</span>

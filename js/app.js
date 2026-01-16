@@ -57,9 +57,15 @@ async function loadChapter(href) {
 
 function displayChapter() {
     displayPage("content");
+    reset();
+    displayWord(false);
+}
+
+function reset() {
     index = 0;
     isPaused = true;
-    displayWord(false);
+    document.getElementById("progress-text").innerHTML = "0%";
+    document.getElementById("progress-bar").value = 0;
 }
 
 function displayWord(play = true) {
@@ -67,6 +73,7 @@ function displayWord(play = true) {
         return;
     }
     let word = chapter[index].split("");
+    const wordLength = word.length;
     if (word.length % 2 === 0) {
         word.unshift("&nbsp;");
     }
@@ -77,7 +84,11 @@ function displayWord(play = true) {
     index += 1;
     if (play) {
         let timeout = (1 / wpm) * 60 * 1000;
-        timeout = /[^A-Za-z0-9]/.test(word.at(-1)) ? timeout * 3 : timeout;
+        if (/[^A-Za-z0-9]/.test(word.at(-1))) {
+            timeout *= 3;
+        } else if (wordLength >= 10) {
+            timeout *= 2;
+        }
         setTimeout(displayWord, Math.round(timeout));
     }
 }
@@ -90,15 +101,17 @@ function play() {
 function resume() {
     isPaused = false;
     document.getElementById("header-buttons").className = "d-none";
-    document.getElementById("progress").className = "w-100 d-none";
+    document.getElementById("progress-bar").className = "w-100 d-none";
     document.getElementById("footer-buttons").className = "m-0 d-none";
 }
 
 function pause() {
     isPaused = true;
-    document.getElementById("progress").value = Math.round(index * 100 / chapter.length);
+    const progress = Math.round(index * 100 / chapter.length);
+    document.getElementById("progress-text").innerHTML = `${progress}%`;
+    document.getElementById("progress-bar").value = progress;
     document.getElementById("header-buttons").className = "d-flex";
-    document.getElementById("progress").className = "w-100";
+    document.getElementById("progress-bar").className = "w-100";
     document.getElementById("footer-buttons").className = "m-0";
 }
 
@@ -111,13 +124,20 @@ function prevWord() {
     displayWord(false);
 }
 
+function seek() {
+    const progress = document.getElementById("progress-bar").value;
+    document.getElementById("progress-text").innerHTML = `${progress}%`;
+    index = Math.round(chapter.length * progress / 100);
+    displayWord(false);
+}
+
 function faster() {
-    wpm = Math.min(1000, wpm + 25);
+    wpm = Math.min(500, wpm + 10);
     document.getElementById("wpm").innerHTML = wpm;
 }
 
 function slower() {
-    wpm = Math.max(0, wpm - 25);
+    wpm = Math.max(100, wpm - 10);
     document.getElementById("wpm").innerHTML = wpm;
 }
 
