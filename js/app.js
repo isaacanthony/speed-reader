@@ -3,7 +3,7 @@ let chapters = [];
 let chapter = [];
 let index = 0;
 let isPaused = true;
-let wpm = 250;
+let wpm = 300;
 let fontSize = 40;
 let isFullScreen = false;
 
@@ -107,7 +107,7 @@ function resume() {
 
 function pause() {
     isPaused = true;
-    const progress = Math.round(index * 100 / chapter.length);
+    const progress = Math.min(99, Math.round(index * 100 / chapter.length));
     document.getElementById("progress-text").innerHTML = `${progress}%`;
     document.getElementById("progress-bar").value = progress;
     document.getElementById("header-buttons").className = "d-flex";
@@ -133,12 +133,12 @@ function seek() {
 
 function faster() {
     wpm = Math.min(500, wpm + 10);
-    document.getElementById("wpm").innerHTML = wpm;
+    document.getElementById("wpm").innerHTML = Math.round(wpm / 10);
 }
 
 function slower() {
     wpm = Math.max(100, wpm - 10);
-    document.getElementById("wpm").innerHTML = wpm;
+    document.getElementById("wpm").innerHTML = Math.round(wpm / 10);
 }
 
 function smaller() {
