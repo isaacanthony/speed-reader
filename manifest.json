@@ -3,7 +3,7 @@
   "short_name": "SpeedReader",
   "start_url": "/speed-reader/",
   "scope": "/speed-reader/",
-  "display": "standalone",
+  "display": "fullscreen",
   "orientation": "portrait",
   "icons": [
     {
