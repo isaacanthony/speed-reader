@@ -2,6 +2,7 @@
   "name": "SpeedReader",
   "short_name": "SpeedReader",
   "start_url": "/speed-reader/",
+  "scope": "/speed-reader/",
   "display": "fullscreen",
   "orientation": "portrait",
   "icons": [
