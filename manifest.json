@@ -6,7 +6,7 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "/speed-reader/img/books.png",
+      "src": "img/books.png",
       "sizes": "192x192",
       "type": "image/png"
     }
