@@ -1,11 +1,12 @@
 {
   "name": "SpeedReader",
   "short_name": "SpeedReader",
-  "start_url": "/",
+  "start_url": "/speed-reader",
   "display": "fullscreen",
+  "orientation": "portrait",
   "icons": [
     {
-      "src": "/img/books.png",
+      "src": "img/books.png",
       "sizes": "160x160",
       "type": "image/png"
     }
