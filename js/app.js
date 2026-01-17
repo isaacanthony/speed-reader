@@ -47,9 +47,9 @@ async function loadChapter(href) {
         nextSibling = nextSibling.nextSibling;
     }
     chapter = text
-        .replace("...", "... ")
-        .replace("…", "… ")
-        .replace(/[\s\-\—]+/g, " ")
+        .replaceAll("...", "... ")
+        .replaceAll("…", "… ")
+        .replaceAll(/[\s\-\—]+/g, " ")
         .trim()
         .split(" ");
     displayChapter();
