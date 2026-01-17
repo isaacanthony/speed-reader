@@ -153,16 +153,6 @@ function larger() {
     document.getElementById("font-size").innerHTML = fontSize;
 }
 
-function fullScreen() {
-    if (isFullScreen) {
-        document.exitFullscreen();
-        isFullScreen = false;
-    } else {
-        document.documentElement.requestFullscreen();
-        isFullScreen = true;
-    }
-}
-
 function addChapter(chapter) {
     chapters.push(`
         <a href="#${chapter.href}">

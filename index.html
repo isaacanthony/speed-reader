@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <meta name="theme-color" content="#000000">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -21,13 +22,10 @@
             .text-white { color: white; }
             .text-center { justify-content: center; }
             .text-middle { align-items: center; }
-            .text-right { justify-content: end; }
             .vh-5 { height: 5vh; }
-            .vh-10 { height: 10vh; }
             .vh-15 { height: 15vh; }
-            .vh-75 { height: 75vh; }
+            .vh-65 { height: 65vh; }
             .vh-100 { height: 100vh; }
-            .w-50 { width: 50%; }
             .w-100 { width: 100%; }
         </style>
     </head>
@@ -46,28 +44,17 @@
         </page>
         <page id="content" class="d-none">
             <div class="content-wrapper" class="vh-100 w-100">
-                <section id="content-header" class="vh-10 w-100">
-                    <div id="header-buttons" class="d-flex">
-                        <br><br>
-                        <div class="w-50 d-flex">
-                            <a href="#">
-                                <h1 class="m-0" onclick="displayPage('upload')">
-                                    &nbsp;⬅️
-                                </h1>
-                            </a>
-                        </div>
-                        <div class="w-50 d-flex text-right">
-                            <a href="#">
-                                <h1 class="m-0" onclick="fullScreen()">
-                                    ↕️&nbsp;
-                                </h1>
-                            </a>
-                        </div>
-                    </div>
+                <section id="content-header" class="vh-15 w-100">
+                    <br>
+                    <a id="header-buttons" href="#">
+                        <h1 class="m-0" onclick="displayPage('upload')">
+                            &nbsp;⬅️
+                        </h1>
+                    </a>
                 </section>
                 <section
                     id="content-body"
-                    class="d-flex vh-75 w-100 text-center text-middle pointer"
+                    class="d-flex vh-65 w-100 text-center text-middle pointer"
                     onclick="play()"
                 >
                     <p id="word" style="font-size: 40px;"></p>
