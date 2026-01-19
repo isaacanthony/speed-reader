@@ -21,12 +21,14 @@
             .pointer { cursor: pointer; }
             .text-red { color: red; }
             .text-white { color: white; }
-            .text-center { justify-content: center; }
+            .text-center { justify-content: center; text-align: center; }
             .text-middle { align-items: center; }
-            .vh-5 { height: 5vh; }
             .vh-10 { height: 10vh; }
-            .vh-15 { height: 15vh; }
-            .vh-65 { height: 65vh; }
+            .vh-20 { height: 20vh; }
+            .vh-25 { height: 25vh; }
+            .vh-30 { height: 30vh; }
+            .vh-35 { height: 35vh; }
+            .vh-40 { height: 40vh; }
             .vh-100 { height: 100vh; }
             .w-100 { width: 100%; }
         </style>
@@ -46,7 +48,7 @@
         </page>
         <page id="content" class="d-none">
             <div class="content-wrapper" class="vh-100 w-100">
-                <section id="content-header" class="vh-10 w-100">
+                <section id="content-header" class="vh-30 w-100">
                     <br>
                     <a id="header-buttons" href="#">
                         <h1 class="m-0" onclick="displayPage('upload')">
@@ -56,12 +58,12 @@
                 </section>
                 <section
                     id="content-body"
-                    class="d-flex vh-65 w-100 text-center text-middle pointer"
+                    class="d-flex vh-35 w-100 text-center text-middle pointer"
                     onclick="play()"
                 >
                     <p id="word" style="font-size: 40px;"></p>
                 </section>
-                <section id="content-progres" class="vh-5 w-100">
+                <section id="content-progres" class="vh-10 w-100">
                     <input
                         id="progress-bar"
                         type="range"
@@ -72,16 +74,19 @@
                         onchange="seek()"
                     >
                 </section>
-                <section id="content-footer" class="d-flex vh-10 w-100 text-center">
+                <section id="content-footer" class="vh-20 w-100 text-center">
                     <h1 id="footer-buttons" class="m-0">
+                        <span onclick="prevPct()" class="pointer">⏪</span>
+                        <span onclick="prevWord()" class="pointer">◀️</span>
+                        <span id="progress-text">0%</span>
+                        <span onclick="nextWord()" class="pointer">▶️</span>
+                        <span onclick="nextPct()" class="pointer">⏩</span>
+                        <br><br>
                         <span onclick="smaller()" class="pointer">🔽</span>
                         <span id="font-size">40</span>
                         <span onclick="larger()" class="pointer">🔼</span>
-                        <span onclick="prevWord()" class="pointer">⏪</span>
-                        <span id="progress-text">0%</span>
-                        <span onclick="nextWord()" class="pointer">⏩</span>
                         <span onclick="slower()" class="pointer">⏬</span>
-                        <span id="wpm">30</span>
+                        <span id="wpm">300</span>
                         <span onclick="faster()" class="pointer">⏫</span>
                     </h1>
                 </section>

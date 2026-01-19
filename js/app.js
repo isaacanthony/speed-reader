@@ -124,8 +124,20 @@ function prevWord() {
     displayWord(false);
 }
 
+function nextPct() {
+    const progress = Number(document.getElementById("progress-bar").value);
+    document.getElementById("progress-bar").value = Math.min(99, progress + 1);
+    seek();
+}
+
+function prevPct() {
+    const progress = Number(document.getElementById("progress-bar").value);
+    document.getElementById("progress-bar").value = Math.max(0, progress - 1);
+    seek();
+}
+
 function seek() {
-    const progress = document.getElementById("progress-bar").value;
+    const progress = Number(document.getElementById("progress-bar").value);
     document.getElementById("progress-text").innerHTML = `${progress}%`;
     index = Math.round(chapter.length * progress / 100);
     displayWord(false);
@@ -133,12 +145,12 @@ function seek() {
 
 function faster() {
     wpm = Math.min(500, wpm + 10);
-    document.getElementById("wpm").innerHTML = Math.round(wpm / 10);
+    document.getElementById("wpm").innerHTML = wpm;
 }
 
 function slower() {
     wpm = Math.max(100, wpm - 10);
-    document.getElementById("wpm").innerHTML = Math.round(wpm / 10);
+    document.getElementById("wpm").innerHTML = wpm;
 }
 
 function smaller() {
