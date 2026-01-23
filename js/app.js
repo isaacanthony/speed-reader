@@ -47,8 +47,7 @@ async function loadChapter(href) {
         nextSibling = nextSibling.nextSibling;
     }
     chapter = text
-        .replaceAll("...", "... ")
-        .replaceAll("…", "… ")
+        .replaceAll("…", " … ")
         .replaceAll(/[\s\-\—]+/g, " ")
         .trim()
         .split(" ");
@@ -85,6 +84,8 @@ function displayWord(play = true) {
     if (play) {
         let timeout = (1 / wpm) * 60 * 1000;
         if (/[^A-Za-z0-9]/.test(word.at(-1))) {
+            timeout *= 3;
+        } else if (wordLength >= 15) {
             timeout *= 3;
         } else if (wordLength >= 10) {
             timeout *= 2;
