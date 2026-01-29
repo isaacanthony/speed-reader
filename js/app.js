@@ -54,6 +54,7 @@ async function loadChapter(href) {
         .replaceAll(" ,", ",")
         .replaceAll(' "', '"')
         .replaceAll(" '", "'")
+        .replaceAll("“", " “")
         .replaceAll("“ ", "“")
         .replaceAll("”", "” ")
         .replaceAll(" ”", "”")
