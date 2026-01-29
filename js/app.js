@@ -48,6 +48,12 @@ async function loadChapter(href) {
     }
     chapter = text
         .replaceAll("…", " … ")
+        .replaceAll(".", ". ")
+        .replaceAll(" .", ".")
+        .replaceAll(",", ", ")
+        .replaceAll(" ,", ",")
+        .replaceAll(' "', '"')
+        .replaceAll(" '", "'")
         .replaceAll(/[\s\-\—]+/g, " ")
         .trim()
         .split(" ");
