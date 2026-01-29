@@ -56,7 +56,9 @@ async function loadChapter(href) {
         .replaceAll(" '", "'")
         .replaceAll("“ ", "“")
         .replaceAll(" ”", "”")
+        .replaceAll(/([a-z])([A-Z])/g, "$1 $2")
         .replaceAll(/[\s\-\—]+/g, " ")
+        .replaceAll(/[ ]+/g, " ")
         .trim()
         .split(" ");
     displayChapter();
